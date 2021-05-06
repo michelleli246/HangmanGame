@@ -1,7 +1,7 @@
 var model;
 
 function loadModel(){
-    model = tf.loadLayersModel("././model/letter_model.json");
+    model = tf.loadLayersModel("././model/letter_model");
 }
 
 function predictLetter(){
