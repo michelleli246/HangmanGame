@@ -1,7 +1,7 @@
 var model;
 
 function loadModel(){
-    model = tf.loadLayersModel("../model/letter_model.json");
+    model = tf.loadLayersModel("./model/letter_model.json");
 }
 
 function predictLetter(){
@@ -25,6 +25,9 @@ function predictLetter(){
     };
 
     input_tensor = tf.tensor(one_val_data);
+    letter_num = model.predict(input_tensor);
 
-    console.log(input_tensor)
+    predicted_letter = string.fromCharCode(97+letter_num);
+
+    console.log(predicted_letter);
 }
