@@ -36,42 +36,48 @@ function setWord() {
 }
 
 function enterTurn(){
-    guess = predictLetter();
-    guessed_letters.push(guess);
+    if(score_keeper<6){
+        guess = predictLetter();
+        guessed_letters.push(guess);
 
-    guessed_letters_str = guessed_letters.join(' ');
-    document.getElementById("guessed_letters").innerHTML = guessed_letters_str;
-    
-    if(selected_word.includes(guess) && !word_output.includes(guess)){
-        for(i=0; i<selected_word.length; i++){
-            if(selected_word[i] == guess){
-                word_output[i] = guess;
-                console.log(word_output);
+        guessed_letters_str = guessed_letters.join(' ');
+        document.getElementById("guessed_letters").innerHTML = guessed_letters_str;
+        
+        if(selected_word.includes(guess) && !word_output.includes(guess)){
+            for(i=0; i<selected_word.length; i++){
+                if(selected_word[i] == guess){
+                    word_output[i] = guess;
+                    console.log(word_output);
+                }
             }
+            output_display = word_output.join(' ');
+            document.getElementById("word_output").innerHTML = output_display;
+        }else{
+            score_keeper = score_keeper+1;
         }
-        output_display = word_output.join(' ');
-        document.getElementById("word_output").innerHTML = output_display;
-    }else{
-        score_keeper = score_keeper+1;
-    }
-    console.log(word_output);
-    console.log(selected_word);
 
-    checkWin();
-    clearCanvas();
-}
+        //clear prediction so it doesn't lag to the next submission turn
+        document.getElementById("temp_guess").innerHTML = "";
 
-function checkWin(){
-    if(compareInputAnswer(word_output, selected_word)){
-        console.log('here');
-        document.getElementById("result_alert").innerHTML = "Congratulations you win :)";
+        checkWin();
+        clearCanvas();
     }
-    else if(score_keeper == 6 && !(compareInputAnswer(word_output, selected_word))){
-        drawScorekeeper(score_keeper);
-        document.getElementById("result_alert").innerHTML = "Sorry you lost :(";
-    }
-    else{
-        drawScorekeeper(score_keeper);
+
+    function checkWin(){
+        if(compareInputAnswer(word_output, selected_word)){
+            console.log('here');
+            document.getElementById("result_alert").innerHTML = "Congratulations you win :)";
+        }
+        else if(score_keeper == 6 && !(compareInputAnswer(word_output, selected_word))){
+            drawScorekeeper(score_keeper);
+            document.getElementById("result_alert").innerHTML = "Sorry you lost :( The word was: ";
+
+            answer = selected_word.join("");
+            document.getElementById("answer").innerHTML = answer;
+        }
+        else{
+            drawScorekeeper(score_keeper);
+        }
     }
 }
 
@@ -108,4 +114,6 @@ function newGame(){
     document.getElementById("result_alert").innerHTML = "";
 
     document.getElementById("temp_guess").innerHTML = "";
+
+    document.getElementById("answer").innerHTML = "";
 }

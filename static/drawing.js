@@ -90,4 +90,8 @@ function clearCanvas() {
     previousY = 0;
 
     context.fillRect(0, 0, canvas.clientWidth, canvas.clientHeight);
+
+    //clear prediction so it doesn't lag to the next submission turn
+    document.getElementById("temp_guess").innerHTML = "";
+
 }
