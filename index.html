@@ -1,21 +1,30 @@
 <!DOCTYPE html>
 <html>
 
-<body onload="loadModel()">
+<body onload="setWord()">
     <script type = "text/javascript" src = "./static/drawing.js"></script>
     <script type = "text/javascript" src = "./static/letter_processing.js"></script>
+    <script type = "text/javascript" src = "./static/hangman.js"></script>
     <script type = "text/javascript" src = "https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
     
-    <div>
+    <div id="title">
         <h1>Handwritten Hangman</h1>
-        <p>Who's this character?</p>
+        <p>Can you figure out the word?</p>
     </div>
 
-    <div>
+    <div id="word_guesser">
+        <p id="word_input"></p>
+    </div>
 
+    <div id="score_keeper">
+        <p id="the_man"></p>
+    </div>
+
+    <div id="game_result">
+        <p id="result_alert"></p>
     </div>
     
-    <div>
+    <div id="drawing_input">
         <p>Write a letter in the box</p>
         <canvas id="my_canvas" width="280" height="280" style="border:1px solid #000000;"></canvas>
         <canvas id="my_canvas2" width="28" height="28" style="display : none"></canvas>

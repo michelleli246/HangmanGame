@@ -13,6 +13,7 @@ function predictLetter(){
 
     canvas2.style.display="none";
 
+    // shrink image down to the necessary 28x28 file size
     context2.drawImage(canvas, 0,0,28,28);
 
     var imageData = context2.getImageData(0,0,28,28);
