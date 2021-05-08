@@ -14,7 +14,7 @@ function prepareCanvas() {
     context.fillRect(0, 0, canvas.clientWidth, canvas.clientHeight);
 
     context.strokeStyle = '#000000';
-    context.lineWidth = 10;
+    context.lineWidth = 15;
     context.lineJoin = 'round';
 
     var isPainting = false;

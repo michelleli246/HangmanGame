@@ -1,14 +1,14 @@
 var model;
 
-function loadModel(){
-    model = tf.loadLayersModel("model/model.json");
+async function loadModel(){
+    model = await tf.loadLayersModel("https://michelleli246.github.io/HangmanGame/static/model/model.json");
 }
 
 function predictLetter(){
     canvas = document.getElementById('my_canvas');
     context = canvas.getContext('2d');
 
-    context.drawImage(canvas, 0,0,28,28);
+    // context.drawImage(canvas, 0,0,28,28);
     var imageData = context.getImageData(0,0,28,28);
     var data = imageData.data;
 
@@ -24,10 +24,12 @@ function predictLetter(){
         one_val_data.push(one_hot_red_val);
     };
 
-    input_tensor = tf.tensor(one_val_data);
-    letter_num = model.predict(input_tensor);
+    input_tensor = tf.tensor([one_val_data]);
 
-    predicted_letter = string.fromCharCode(97+letter_num);
+    letter_num = model.predict(input_tensor);
+    console.log(letter_num.dataSync());
+    
+    predicted_letter = String.fromCharCode(97+letter_num);
 
     console.log(predicted_letter);
 }
