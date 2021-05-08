@@ -1,9 +1,3 @@
-var model;
-
-async function loadModel(){
-    model = await tf.loadLayersModel("https://michelleli246.github.io/HangmanGame/static/model/model.json");
-}
-
 function predictLetter(){
     canvas = document.getElementById('my_canvas');
     context = canvas.getContext('2d');
@@ -11,7 +5,7 @@ function predictLetter(){
     canvas2 = document.getElementById('my_canvas2');
     context2 = canvas2.getContext('2d');
 
-    canvas2.style.display="none";
+    //canvas2.style.display="none";
 
     // shrink image down to the necessary 28x28 file size
     context2.drawImage(canvas, 0,0,28,28);
@@ -48,6 +42,7 @@ function predictLetter(){
     input_tensor = tf.tensor([transposed_list]);
 
     raw_pred = model.predict(input_tensor);
+
     letter_pred = raw_pred.dataSync();
 
     var max = letter_pred[0];
@@ -61,6 +56,5 @@ function predictLetter(){
     }
 
     predicted_letter = String.fromCharCode(96+letter_num);
-
     return predicted_letter;
 }

@@ -43,6 +43,9 @@ function prepareCanvas() {
 
     canvas.addEventListener('mouseleave', function (){
         isPainting = false;
+
+        prediction = predictLetter();
+        document.getElementById("temp_guess").innerHTML = prediction;
     });
 
     // Touch events
@@ -54,6 +57,9 @@ function prepareCanvas() {
 
     canvas.addEventListener('touchend', function (){
         isPainting = false;
+
+        prediction = predictLetter();
+        document.getElementById("temp_guess").innerHTML = prediction;
     });
 
     canvas.addEventListener('touchmove', function (event) {

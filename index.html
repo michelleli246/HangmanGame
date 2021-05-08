@@ -3,17 +3,17 @@
 
 <body onload="setWord()">
     <script type = "text/javascript" src = "./static/drawing.js"></script>
-    <script type = "text/javascript" src = "./static/letter_processing.js"></script>
     <script type = "text/javascript" src = "./static/hangman.js"></script>
+    <script type = "text/javascript" src = "./static/letter_processing.js"></script>
     <script type = "text/javascript" src = "https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
     
     <div id="title">
         <h1>Handwritten Hangman</h1>
-        <p>Can you figure out the word?</p>
+        <p>Can you figure out the word below?</p>
     </div>
 
     <div id="word_guesser">
-        <p id="word_input"></p>
+        <p id="word_output"></p>
     </div>
 
     <div id="score_keeper">
@@ -25,16 +25,23 @@
     </div>
     
     <div id="drawing_input">
-        <p>Write a letter in the box</p>
+        <p>Write an upper or lowercase letter in the box</p>
+        <p></p>
+
+        <p>Guessed letters: <span id="guessed_letters"></span></p>
+        <p>What I think your letter is: <span id = "temp_guess"></span></p>
+
         <canvas id="my_canvas" width="280" height="280" style="border:1px solid #000000;"></canvas>
-        <canvas id="my_canvas2" width="28" height="28" style="display : none"></canvas>
+        <canvas id="my_canvas2" width="28" height="28" style="display:none;"></canvas>
 
         <script>prepareCanvas();</script>
 
         <p></p>
 
-        <button id="submit_button" onclick=predictLetter()>Submit</button>
+        <button id="submit_button" onclick=enterTurn()>Submit</button>
         <button id="clear_button" onclick=clearCanvas()>Clear Box</button>
+        <p></p>
+        <button id="new_game" onclick=setWord()>New Game</button>
     </div>
 </body>
 </html>
